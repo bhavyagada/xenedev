@@ -3,8 +3,11 @@
   import * as THREE from 'three';
   import pkg from 'perlin';
   const { noise } = pkg;
+  import { is_loading } from '$lib';
+  import OverlayLoader from '$lib/components/OverlayLoader.svelte';
 
   onMount(() => {
+    $is_loading = true;
     let renderer = new THREE.WebGLRenderer({ canvas: document.querySelector('canvas'), antialias: true, alpha: true });
     renderer.setClearColor(0xffffff, 0);
     renderer.setPixelRatio(window.devicePixelRatio > 1 ? 1 : 1);
@@ -105,6 +108,7 @@
     document.body.addEventListener('touchstart', onMouseDown);
     document.body.addEventListener('touchend', onMouseUp);
     requestAnimationFrame(render);
+    setTimeout(() => $is_loading = false, 1500);
   });
 </script>
 
@@ -141,6 +145,7 @@
     <span class="font-bold text-[#1de9b6] hover:text-[#121212]">Let's Begin</span>
     <div class="dot !block"></div>
   </div>
+  <OverlayLoader />
 </div>
 
 <style>
