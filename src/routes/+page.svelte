@@ -145,7 +145,7 @@
     <span class="font-bold text-[#1de9b6] hover:text-[#121212]">Let's Begin</span>
     <div class="dot !block"></div>
   </div>
-  <OverlayLoader />
+  <svelte:component this={OverlayLoader} />
 </div>
 
 <style>
